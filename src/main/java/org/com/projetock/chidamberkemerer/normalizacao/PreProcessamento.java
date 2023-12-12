@@ -187,7 +187,7 @@ public class PreProcessamento {
     }
 
 
-    private static boolean containsValorTeste(String texto, String[] palavras) {
+    private static boolean containsValorTest(String texto, String[] palavras) {
         for (String palavra : palavras) {
             if (texto.trim().toLowerCase().contains(palavra.toLowerCase())) {
                 return true;
@@ -241,7 +241,7 @@ public class PreProcessamento {
                     for (int i = 1; i <= 10; i++) {
                         if (modelo.getCLASSE().equals(String.valueOf(i))) {
                             // Mapeamento para a condição "UOTESTED"
-                            int uotestedValue = containsValorTeste(valorNomeClasse, palavrasUOTESTED) ? valorSet : valorSet + 1;
+                            int uotestedValue = containsValorTest(valorNomeClasse, palavrasUOTESTED) ? valorSet : valorSet + 1;
                             modelo.setUOTESTED(String.valueOf(uotestedValue));
 
                             modelList.add(new Model(modelo.getCBO(),
