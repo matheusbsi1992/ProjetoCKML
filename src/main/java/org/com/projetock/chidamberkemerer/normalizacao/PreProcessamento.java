@@ -186,7 +186,7 @@ public class PreProcessamento {
                 || csvRecord.toString().contains("Class");
     }
 
-    // Função auxiliar para verificar se a string contém alguma das palavras fornecidas
+
     private static boolean containsValorTeste(String texto, String[] palavras) {
         for (String palavra : palavras) {
             if (texto.trim().toLowerCase().contains(palavra.toLowerCase())) {
