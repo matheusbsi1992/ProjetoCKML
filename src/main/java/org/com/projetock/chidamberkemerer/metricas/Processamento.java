@@ -22,6 +22,8 @@ public class Processamento {
     private PreProcessamento preProcessamento;
     private static Evaluation evaluation;
 
+
+
     public Processamento() {
         preProcessamento = new PreProcessamento();
     }
@@ -31,6 +33,7 @@ public class Processamento {
         PreProcessamento.abrirSessaoConjuntodeDados();
 
         Instances dataInstances = null;
+
         try {
             ConverterUtils.DataSource dataSource = new ConverterUtils.DataSource("projetocontido/preprocessamentoCK.arff");
             dataInstances = dataSource.getDataSet();
@@ -83,11 +86,32 @@ public class Processamento {
 
         model.buildClassifier(trainingSet);
 
-        evaluation.evaluateModel(model, testingSet);
+        //evaluation.evaluateModel(model, testingSet);
 
         evaluation.crossValidateModel(model, trainingSet, Math.min(quantidadeFolds, testingSet.size()), new Random(1));
 
         return evaluation;
+    }
+
+    public void getValueMestrics() throws Exception {
+        if (evaluation.numInstances() > 0) {
+            List<String> valorMetrics = evaluation.getMetricsToDisplay();
+            for (String value : valorMetrics) {
+                System.out.println(value);
+            }
+        }else{
+            if(evaluation.numInstances()==0) {
+                throw new Exception("Instances not found!");
+            }
+        }
+        ///----processo de regressao de error, para analise de Overfitting
+        // Calcula a regressão do erro
+        double valueErrorRate= evaluation.errorRate();
+        System.out.println("----------Error Rate---------");
+        System.out.println(valueErrorRate);
+
+        // Exibe os resultados da avaliação
+        System.out.println(evaluation.toSummaryString());
     }
 
     public static Map<Integer, List<Double>> evaluationResultados(Evaluation eval) throws Exception {
@@ -105,6 +129,7 @@ public class Processamento {
                 valoresVals.get(i).add(eval.numFalsePositives(i));
                 valoresVals.get(i).add(eval.numFalseNegatives(i));
                 valoresVals.get(i).add(eval.areaUnderROC(i));
+                valoresVals.get(i).add(eval.errorRate());
             }
         }
         return valoresVals;

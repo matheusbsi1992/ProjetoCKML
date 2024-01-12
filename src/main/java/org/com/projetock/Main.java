@@ -46,6 +46,7 @@ public class Main {
                         System.out.println("Falsos Positivos (FP): " + valores.get(2));
                         System.out.println("Falsos Negativos (FN): " + valores.get(3));
                         System.out.println("Área sob a Curva ROC: " + String.format("%.2f%%",valores.get(4)*100));
+                        System.out.println("Valor ErrorRate: " + valores.get(5));
                         System.out.println("Acurácia: "+String.format("%.2f%%", acuracia(valores)*100));
                         System.out.println("Precisão: "+String.format("%.2f%%", precisao(valores)*100));
                         System.out.println("Recall: "+String.format("%.2f%%", recall(valores)*100));
