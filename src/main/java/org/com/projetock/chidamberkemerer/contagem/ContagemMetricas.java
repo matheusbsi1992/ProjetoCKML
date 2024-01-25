@@ -1,9 +1,12 @@
 package org.com.projetock.chidamberkemerer.contagem;
 
-import org.com.projetock.chidamberkemerer.normalizacao.PreProcessamento;
 import org.com.projetock.chidamberkemerer.modelo.Model;
+import org.com.projetock.chidamberkemerer.normalizacao.PreProcessamento;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
+
+import static org.com.projetock.chidamberkemerer.util.Util.tipoDecimal;
 
 public class ContagemMetricas extends PreProcessamento {
 
@@ -17,101 +20,133 @@ public class ContagemMetricas extends PreProcessamento {
     //                    "jfree", "jfreechart",
     //                    "lucene", "lucene",
     //                    "org.apache.poi", "poi"
+
+    /*
+             "info.archinnov.achilles", "1", "achilles"        ---> 01 - 02,
+                   "org.assertj.core", "2", "assertj"          ---> 03 - 04,
+                   "org.apache.commons.io", "3", "commons.io"  ---> 05 - 06,
+                   "org.joda", "4", "joda.time"                ---> 07 - 08,
+                   "org.apache.commons.math", "5", "math"      ---> 09 - 10,
+                   "org.apache.hadoop", "6", "hadoop"          ---> 11 - 12,
+                   "jackrabbit", "7", "jackrabbit"             ---> 13 - 14,
+                   "jfree", "8", "jfreechart"                  ---> 15 - 16,
+                   "lucene", "9", "lucene"                     ---> 17 - 18,
+                   "org.apache.poi", "10" "poi"                ---> 19 - 20
+           */
+    public static void TestUsado(){
+        Model menorValorMetricaAChillesCBO = new Model();
+        //for (Model modelo: getModelList()){
+            //System.out.println(modelo.getCLASSE());
+            menorValorMetricaAChillesCBO = getModelList()
+                    .stream()
+                    .filter(model -> model.getCLASSE().equals("1"))
+                    .max(Comparator.comparingInt(model -> Integer.parseInt(model.getCBO())))
+                    .orElse(null);
+          /*  System.out.println("\n<<<--CLASSES DEFINIDAS COMO TESTE-->>>\n");
+            System.out.println(modelo.getUOTESTED());*/
+        //}
+        System.out.println("-----VALOR-----");
+        System.out.println(menorValorMetricaAChillesCBO.getCBO());
+        System.out.println(menorValorMetricaAChillesCBO.getCLASSE());
+    }
     public static String quantidadeClasses() {
         // Calcular a soma dos números de todas as classes identificadas para tentativa de teste
         return String.format("|VALOR TOTAL DE CLASSES IDENTIFICADAS: %d|"
                 , getModelList().stream().count());
     }
 
-    public static String quantidadePorTipodeClasse() {
-        long quantidadeAchilles = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+    public static String quantidadePorTipodeClasseIdentificadosComoTestaveis() {
+
+        long quantidadeTestAchilles = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("1"))
                 .count();
 
-        long quantidadeAssertJ = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+        long quantidadeTestAssertJ = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("2"))
                 .count();
 
-        long quantidadeCommonsio = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+        long quantidadeTestCommonsio = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("3"))
                 .count();
 
-        long quantidadeJodaTime = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+        long quantidadeTestJodaTime = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("4"))
                 .count();
 
-        long quantidadeMath = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+        long quantidadeTestMath = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("5"))
                 .count();
 
-        long quantidadeHadoop = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("hadoop"))
+        long quantidadeTestHadoop = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("6"))
                 .count();
 
-        long quantidadeJackRabbit = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("jackrabbit"))
+        long quantidadeTestJackRabbit = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("7"))
                 .count();
 
-        long quantidadeJfreeChart = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("jfreechart"))
+        long quantidadeTestJfreeChart = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("8"))
                 .count();
 
-        long quantidadeLucene = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("lucene"))
+        long quantidadeTestLucene = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("9"))
                 .count();
 
-        long quantidadePoi = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("poi"))
+        long quantidadeTestPoi = getModelList().stream()
+                .filter(model -> model.getUOTESTED().equals("10"))
                 .count();
 
-        return String.format("|ACHILLES: %d|ASSERTJ: %d|COMMONS IO: %d|JODA TIME: %d|MATH: %d|HADOOP: %d|JACKRABBIT: %d|JFREECHART: %d|LUCENE: %d|POI: %d|"
-                , quantidadeAchilles
-                , quantidadeAssertJ
-                , quantidadeCommonsio
-                , quantidadeJodaTime
-                , quantidadeMath
-                , quantidadeHadoop
-                , quantidadeJackRabbit
-                , quantidadeJfreeChart
-                , quantidadeLucene
-                , quantidadePoi);
+        return String.format("CLASSES IDENTIFICADAS COMO TESTAVEIS \n" +
+                        "|ACHILLES: %d|ASSERTJ: %d|COMMONS IO: %d|JODA TIME: %d|MATH: %d|HADOOP: %d|JACKRABBIT: %d|JFREECHART: %d|LUCENE: %d|POI: %d|"
+                , quantidadeTestAchilles
+                , quantidadeTestAssertJ
+                , quantidadeTestCommonsio
+                , quantidadeTestJodaTime
+                , quantidadeTestMath
+                , quantidadeTestHadoop
+                , quantidadeTestJackRabbit
+                , quantidadeTestJfreeChart
+                , quantidadeTestLucene
+                , quantidadeTestPoi
+        );
     }
 
     public static String valorSomaAchillesMetricasCK() {
 
         double somaValorMetricaAchillesCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaAchillesDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaAchillesLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaAchillesNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaAchillesRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaAchillesWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+                .filter(model -> model.getCLASSE().contains("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -542,32 +577,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorPoiMetricasCK() {
         Model menorValorMetricaPoiCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaPoiDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaPoiLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaPoiNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaPoiRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaPoiWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -622,32 +657,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorLuceneMetricasCK() {
         Model menorValorMetricaLuceneCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaLuceneDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaLuceneLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaLuceneNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaLuceneRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaLuceneWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -702,32 +737,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorJfreechartMetricasCK() {
         Model menorValorMetricaJfreechartCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaJfreechartDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaJfreechartLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaJfreechartNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJfreechartRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJfreechartWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jfreechart"))
+                .filter(model -> model.getCLASSE().contains("8"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -782,32 +817,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorJackrabbitMetricasCK() {
         Model menorValorMetricaJackrabbitCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaJackrabbitDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaJackrabbitLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaJackrabbitNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJackrabbitRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJackrabbitWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().contains("7"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -862,32 +897,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorHadoopMetricasCK() {
         Model menorValorMetricaHadoopCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaHadoopDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaHadoopLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaHadoopNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaHadoopRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaHadoopWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().contains("6"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -942,32 +977,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorMathMetricasCK() {
         Model menorValorMetricaMathCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaMathDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaMathLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaMathNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaMathRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaMathWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("math"))
+                .filter(model -> model.getCLASSE().contains("5"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -1022,32 +1057,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorJodaMetricasCK() {
         Model menorValorMetricaJodaCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaJodaDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaJodaLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaJodaNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJodaRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaJodaWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("joda.time"))
+                .filter(model -> model.getCLASSE().contains("4"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -1101,33 +1136,39 @@ public class ContagemMetricas extends PreProcessamento {
     }
 
     public static String valorMenorAchillesMetricasCK() {
-        Model menorValorMetricaAChillesCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
-                .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
+        Model menorValorMetricaAChillesCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .min(Comparator.comparingDouble(model -> Double.parseDouble(model.getCBO())))
                 .orElse(null);
 
-        Model menorValorMetricaAChillesDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+        Model menorValorMetricaAChillesDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().contains("1"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
-        Model menorValorMetricaAChillesLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+        Model menorValorMetricaAChillesLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().contains("1"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
-        Model menorValorMetricaAChillesNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+        Model menorValorMetricaAChillesNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().contains("1"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
-        Model menorValorMetricaAChillesRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+        Model menorValorMetricaAChillesRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().contains("1"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
-        Model menorValorMetricaAChillesWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("achilles"))
+        Model menorValorMetricaAChillesWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().contains("1"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -1182,32 +1223,32 @@ public class ContagemMetricas extends PreProcessamento {
 
     public static String valorMenorAssertjMetricasCK() {
         Model menorValorMetricaAssertjCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaAssertjDIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaAssertjLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaAssertjNOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaAssertjRFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaAssertjWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("assertj"))
+                .filter(model -> model.getCLASSE().contains("2"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -1219,6 +1260,7 @@ public class ContagemMetricas extends PreProcessamento {
                 "|CLASSE ASSERTJ RFC: " + Double.parseDouble(menorValorMetricaAssertjRFC.getRFC()) +
                 "|CLASSE ASSERTJ WMC: " + Double.parseDouble(menorValorMetricaAssertjWMC.getWMC());
     }
+
 
     public static String valorMaiorCommonsIOMetricasCK() {
         Model maiorValorMetricaCommonsIOCBO = getModelList().stream()
@@ -1263,33 +1305,32 @@ public class ContagemMetricas extends PreProcessamento {
     public static String valorMenorCommonsIOMetricasCK() {
 
         Model menorValorMetricaCommonsIOCBO = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getCBO())))
                 .orElse(null);
 
         Model menorValorMetricaCommonsIODIT = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getDIT())))
                 .orElse(null);
 
         Model menorValorMetricaCommonsIOLCOM = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getLCOM())))
                 .orElse(null);
 
         Model menorValorMetricaCommonsIONOC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaCommonsIORFC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io"))
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getNOC())))
                 .orElse(null);
 
         Model menorValorMetricaCommonsIOWMC = getModelList().stream()
-                .filter(model -> model.getCLASSE().contains("commons.io")
-                )
+                .filter(model -> model.getCLASSE().contains("3"))
                 .min(Comparator.comparingDouble(modelo -> Double.parseDouble(modelo.getWMC())))
                 .orElse(null);
 
@@ -1299,10 +1340,136 @@ public class ContagemMetricas extends PreProcessamento {
                 "|CLASSE COMMONS.IO LCOM: " + Double.parseDouble(menorValorMetricaCommonsIOLCOM.getLCOM()) +
                 "|CLASSE COMMONS.IO NOC: " + Double.parseDouble(menorValorMetricaCommonsIONOC.getNOC()) +
                 "|CLASSE COMMONS.IO RFC: " + Double.parseDouble(menorValorMetricaCommonsIORFC.getRFC()) +
-                "|CLASSE COMMONS.IO WMC: " + Double.parseDouble(menorValorMetricaCommonsIOWMC.getWMC()) + "CLASSE MENOR-->>" + menorValorMetricaCommonsIOWMC.getCLASSE();
+                "|CLASSE COMMONS.IO WMC: " + Double.parseDouble(menorValorMetricaCommonsIOWMC.getWMC());
+
     }
 
-    public static String quantidadeClassePorTipodeTesteIdentificado() {
+    public static String valorMediaAchillesMetricasCK(){
+        double mediaValorMetricaAChillesCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorMetricaAChillesDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorMetricaAChillesLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorMetricaAChillesNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorMetricaAChillesRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorMetricaAChillesWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - ACHILLES \n" +
+                "|CLASSE ACHILLES CBO: " + tipoDecimal(mediaValorMetricaAChillesCBO)+
+                "|CLASSE ACHILLES DIT: " + tipoDecimal(mediaValorMetricaAChillesDIT) +
+                "|CLASSE ACHILLES LCOM: " + tipoDecimal(mediaValorMetricaAChillesLCOM) +
+                "|CLASSE ACHILLES NOC: " + tipoDecimal(mediaValorMetricaAChillesNOC) +
+                "|CLASSE ACHILLES RFC: " + tipoDecimal(mediaValorMetricaAChillesRFC) +
+                "|CLASSE ACHILLES WMC: " + tipoDecimal(mediaValorMetricaAChillesWMC);
+
+    }
+
+    public static String valorMediaAssertJMetricasCK(){
+        double mediaValorMetricaAssertJCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorMetricaAssertJDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorMetricaAssertJLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorMetricaAssertJNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorMetricaAssertJRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorMetricaAssertJWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - ASSERTJ \n" +
+                "|CLASSE ASSERTJ CBO: " + tipoDecimal(mediaValorMetricaAssertJCBO)+
+                "|CLASSE ASSERTJ DIT: " + tipoDecimal(mediaValorMetricaAssertJDIT) +
+                "|CLASSE ASSERTJ LCOM: " + tipoDecimal(mediaValorMetricaAssertJLCOM) +
+                "|CLASSE ASSERTJ NOC: " + tipoDecimal(mediaValorMetricaAssertJNOC) +
+                "|CLASSE ASSERTJ RFC: " + tipoDecimal(mediaValorMetricaAssertJRFC) +
+                "|CLASSE ASSERTJ WMC: " + tipoDecimal(mediaValorMetricaAssertJWMC);
+
+    }
+
+
+    public static String valorMediaCommonsIOMetricasCK(){
+        double mediaValorCommonsIOCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorCommonsIODIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorCommonsIOLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorCommonsIONOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorCommonsIORFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorCommonsIOWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("3"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - COMMONS.IO \n" +
+                "|CLASSE COMMONS.IO CBO: " + tipoDecimal(mediaValorCommonsIOCBO)+
+                "|CLASSE COMMONS.IO DIT: " + tipoDecimal(mediaValorCommonsIODIT) +
+                "|CLASSE COMMONS.IO LCOM: " + tipoDecimal(mediaValorCommonsIOLCOM) +
+                "|CLASSE COMMONS.IO NOC: " + tipoDecimal(mediaValorCommonsIONOC) +
+                "|CLASSE COMMONS.IO RFC: " + tipoDecimal(mediaValorCommonsIORFC) +
+                "|CLASSE COMMONS.IO WMC: " + tipoDecimal(mediaValorCommonsIOWMC);
+
+    }
+
+
+    /*public static String quantidadeClassePorTipodeTesteIdentificado() {
         long quantidadeAchilles = getModelList().stream()
                 .filter(model -> model.getCLASSE().contains("achilles") && model.getUOTESTED().contains("1"))
                 .count();
@@ -1354,7 +1521,7 @@ public class ContagemMetricas extends PreProcessamento {
                 , quantidadeJfreeChart
                 , quantidadeLucene
                 , quantidadePoi);
-    }
+    }*/
 
 
 }
