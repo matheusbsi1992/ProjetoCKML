@@ -110,6 +110,7 @@ public class Main {
         System.out.println(valorMediaAchillesMetricasCK());
         System.out.println(valorMediaAssertJMetricasCK());
         System.out.println(valorMediaCommonsIOMetricasCK());
+        System.out.println(valorMediaJodaMetricasCK());
         System.out.println("-------------------------MEDIA-------------------------");
 
 

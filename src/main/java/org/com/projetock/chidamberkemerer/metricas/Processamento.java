@@ -5,12 +5,12 @@ import org.com.projetock.chidamberkemerer.normalizacao.PreProcessamento;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.lazy.IBk;
 import weka.classifiers.rules.DecisionTable;
+import weka.classifiers.trees.J48;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.filters.Filter;
+import weka.filters.supervised.instance.ClassBalancer;
 import weka.filters.unsupervised.instance.Randomize;
 import weka.filters.unsupervised.instance.RemovePercentage;
 
@@ -46,12 +46,14 @@ public class Processamento {
 
     public static Classifier[] classificadoresWeka() throws Exception {
 
-        IBk knn = new IBk();
-        knn.setKNN(3);
+//        IBk knn = new IBk();
+//        knn.setKNN(3);
 
-        Classifier[] classifiers = {new NaiveBayes()
+        Classifier[] classifiers = {
+                  new J48()
                 , new DecisionTable()
-                , knn
+                , new NaiveBayes()
+                //, knn
         };
         return classifiers;
     }
@@ -61,19 +63,19 @@ public class Processamento {
         Randomize rand = new Randomize();
         rand.setInputFormat(data);
         rand.setRandomSeed((int) numerodePassagens);
-        data = Filter.useFilter(data, rand);
+        data = ClassBalancer.useFilter(data, rand);
         // Remove testpercentage from data to get the train set
         RemovePercentage rp = new RemovePercentage();
         rp.setInputFormat(data);
         rp.setPercentage(numerodePassagens);
-        Instances train = Filter.useFilter(data, rp);
+        Instances train = ClassBalancer.useFilter(data, rp);
         // Remove trainpercentage from data to get the test set
         rp = new RemovePercentage();
         rp.setInputFormat(data);
         //70% treino e 30% teste de forma aleatoria
         rp.setPercentage(numerodePassagens);
         rp.setInvertSelection(true);
-        Instances test = Filter.useFilter(data, rp);
+        Instances test = ClassBalancer.useFilter(data, rp);
         return new Instances[]{train, test};
     }
 
@@ -86,32 +88,32 @@ public class Processamento {
 
         model.buildClassifier(trainingSet);
 
-        //evaluation.evaluateModel(model, testingSet);
+        //valuation.evaluateModel(model, testingSet);
 
-        evaluation.crossValidateModel(model, trainingSet, Math.min(quantidadeFolds, testingSet.size()), new Random(1));
+        evaluation.crossValidateModel(model, testingSet, Math.min(quantidadeFolds, testingSet.size()), new Random(1));
 
         return evaluation;
     }
 
-    public void getValueMestrics() throws Exception {
-        if (evaluation.numInstances() > 0) {
-            List<String> valorMetrics = evaluation.getMetricsToDisplay();
+    public static void getValueMestrics(Evaluation eval) throws Exception {
+        if (eval.numInstances() > 0) {
+            List<String> valorMetrics = eval.getMetricsToDisplay();
             for (String value : valorMetrics) {
                 System.out.println(value);
             }
         }else{
-            if(evaluation.numInstances()==0) {
+            if(eval.numInstances()==0) {
                 throw new Exception("Instances not found!");
             }
         }
         ///----processo de regressao de error, para analise de Overfitting
         // Calcula a regressão do erro
-        double valueErrorRate= evaluation.errorRate();
+        double valueErrorRate= eval.errorRate();
         System.out.println("----------Error Rate---------");
         System.out.println(valueErrorRate);
 
         // Exibe os resultados da avaliação
-        System.out.println(evaluation.toSummaryString());
+        System.out.println(eval.toSummaryString());
     }
 
     public static Map<Integer, List<Double>> evaluationResultados(Evaluation eval) throws Exception {

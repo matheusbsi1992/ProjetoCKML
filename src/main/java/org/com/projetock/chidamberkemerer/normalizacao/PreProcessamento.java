@@ -196,6 +196,21 @@ public class PreProcessamento {
         return false;
     }
 
+    private static List<Model> valueList(Model modelo){
+
+        modelList.add(new Model(modelo.getCBO(),
+                modelo.getDIT(),
+                modelo.getLCOM(),
+                modelo.getNOC(),
+                modelo.getRFC(),
+                modelo.getWMC(),
+                modelo.getCLASSE(),
+                modelo.getUOTESTED())
+        );
+
+        return modelList;
+    }
+
     private static List<Model> normalizacaoDados(Model modelo) {
 
         try {
@@ -244,15 +259,13 @@ public class PreProcessamento {
                             int uotestedValue = containsValorTest(valorNomeClasse, palavrasUOTESTED) ? valorSet : valorSet + 1;
                             modelo.setUOTESTED(String.valueOf(uotestedValue));
 
-                            modelList.add(new Model(modelo.getCBO(),
-                                    modelo.getDIT(),
-                                    modelo.getLCOM(),
-                                    modelo.getNOC(),
-                                    modelo.getRFC(),
-                                    modelo.getWMC(),
-                                    modelo.getCLASSE(),
-                                    modelo.getUOTESTED())
-                            );
+                           /* if(identityTypeOOComplexity(modelo).equals("0")){
+                                valueList(modelo);
+                            }else{
+                                valueList(modelo);
+                            }*/
+
+                            valueList(modelo);
                             break;
                         }
                         valorSet += 2;
@@ -269,4 +282,23 @@ public class PreProcessamento {
         return modelList;
     }
 
+  /*  private static String identityTypeOOComplexity(Model modelo) {
+
+        if (
+                *//*modelo.getNOC().equals("0")
+                ||
+                modelo.getCBO().equals("0")
+                ||
+                modelo.getLCOM().equals("0")
+                ||
+                modelo.getDIT().equals("0")
+                ||*//*
+                modelo.getRFC().equals("0")
+                ||
+                modelo.getWMC().equals("0")
+        ){
+            return "0";
+        }
+        return null;
+    }*/
 }

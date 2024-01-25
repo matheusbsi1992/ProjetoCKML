@@ -1468,6 +1468,47 @@ public class ContagemMetricas extends PreProcessamento {
 
     }
 
+    public static String valorMediaJodaMetricasCK(){
+        double mediaValorJodaCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorJodaDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorJodaLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorJodaNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorJodaRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorJodaWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - JODA \n" +
+                "|CLASSE JODA CBO: " + tipoDecimal(mediaValorJodaCBO)+
+                "|CLASSE JODA DIT: " + tipoDecimal(mediaValorJodaDIT) +
+                "|CLASSE JODA LCOM: " + tipoDecimal(mediaValorJodaLCOM) +
+                "|CLASSE JODA NOC: " + tipoDecimal(mediaValorJodaNOC) +
+                "|CLASSE JODA RFC: " + tipoDecimal(mediaValorJodaRFC) +
+                "|CLASSE JODA WMC: " + tipoDecimal(mediaValorJodaWMC);
+
+    }
+
 
     /*public static String quantidadeClassePorTipodeTesteIdentificado() {
         long quantidadeAchilles = getModelList().stream()
