@@ -1,15 +1,20 @@
 package org.com.projetock;
 
 
+import org.com.projetock.chidamberkemerer.util.Util;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 import static org.com.projetock.chidamberkemerer.contagem.ContagemMetricas.*;
 import static org.com.projetock.chidamberkemerer.metricas.Processamento.*;
+import static org.com.projetock.chidamberkemerer.util.Util.tipoDecimal;
 
 public class Main {
 
@@ -111,10 +116,38 @@ public class Main {
         System.out.println(valorMediaAssertJMetricasCK());
         System.out.println(valorMediaCommonsIOMetricasCK());
         System.out.println(valorMediaJodaMetricasCK());
+        System.out.println(valorMediaMathMetricasCK());
+        System.out.println(valorMediaHadoopMathMetricasCK());
+        System.out.println(valorMediaJackRabbitMetricasCK());
+        System.out.println(valorMediaJfreeChartMetricasCK());
+        System.out.println(valorMediaLuceneMetricasCK());
+        System.out.println(valorMediaPoiMetricasCK());
         System.out.println("-------------------------MEDIA-------------------------");
 
+        // Filtra modelos com classe "1" e extrai valores de DIT como DoubleStream
+        DoubleStream ditStream = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .mapToDouble(model -> Double.parseDouble(model.getCBO()));
 
+        // Calcula a média
+        double media = ditStream.average().orElse(0.0);
 
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getCBO());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variância
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrão como a raiz quadrada da variância
+        double desvioPadrao = Math.sqrt(variancia);
+
+        System.out.println("Desvio Padrão: " +  tipoDecimal(desvioPadrao));
 
     }
 

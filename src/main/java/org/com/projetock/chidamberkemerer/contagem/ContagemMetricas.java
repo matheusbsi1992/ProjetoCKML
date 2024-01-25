@@ -1509,6 +1509,246 @@ public class ContagemMetricas extends PreProcessamento {
 
     }
 
+    public static String valorMediaMathMetricasCK(){
+        double mediaValorMathCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("5"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorMathDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("5"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorMathLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("5"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorMathNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("5"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorMathRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("5"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorMathWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("4"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - MATH \n" +
+                "|CLASSE MATH CBO: " + tipoDecimal(mediaValorMathCBO)+
+                "|CLASSE MATH DIT: " + tipoDecimal(mediaValorMathDIT) +
+                "|CLASSE MATH LCOM: " + tipoDecimal(mediaValorMathLCOM) +
+                "|CLASSE MATH NOC: " + tipoDecimal(mediaValorMathNOC) +
+                "|CLASSE MATH RFC: " + tipoDecimal(mediaValorMathRFC) +
+                "|CLASSE MATH WMC: " + tipoDecimal(mediaValorMathWMC);
+
+    }
+    public static String valorMediaHadoopMathMetricasCK(){
+        double mediaValorHadoopCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorHadoopDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorHadoopLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorHadoopNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorHadoopRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorHadoopWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("6"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - HADOOP \n" +
+                "|CLASSE HADOOP CBO: " + tipoDecimal(mediaValorHadoopCBO)+
+                "|CLASSE HADOOP DIT: " + tipoDecimal(mediaValorHadoopDIT) +
+                "|CLASSE HADOOP LCOM: " + tipoDecimal(mediaValorHadoopLCOM) +
+                "|CLASSE HADOOP NOC: " + tipoDecimal(mediaValorHadoopNOC) +
+                "|CLASSE HADOOP RFC: " + tipoDecimal(mediaValorHadoopRFC) +
+                "|CLASSE HADOOP WMC: " + tipoDecimal(mediaValorHadoopWMC);
+    }
+
+    public static String valorMediaJackRabbitMetricasCK(){
+        double mediaValorJackRabbitCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorJackRabbitDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorJackRabbitLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorJackRabbitNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorJackRabbitRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorJackRabbitWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("7"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - JACKRABBIT \n" +
+                "|CLASSE JACKRABBIT CBO: " + tipoDecimal(mediaValorJackRabbitCBO)+
+                "|CLASSE JACKRABBIT DIT: " + tipoDecimal(mediaValorJackRabbitDIT) +
+                "|CLASSE JACKRABBIT LCOM: " + tipoDecimal(mediaValorJackRabbitLCOM) +
+                "|CLASSE JACKRABBIT NOC: " + tipoDecimal(mediaValorJackRabbitNOC) +
+                "|CLASSE JACKRABBIT RFC: " + tipoDecimal(mediaValorJackRabbitRFC) +
+                "|CLASSE JACKRABBIT WMC: " + tipoDecimal(mediaValorJackRabbitWMC);
+    }
+
+    public static String valorMediaJfreeChartMetricasCK(){
+        double mediaValorJfreeChartCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorJfreeChartDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorJfreeChartLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorJfreeChartNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorJfreeChartRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorJfreeChartWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - JFREECHART \n" +
+                "|CLASSE JFREECHART CBO: " + tipoDecimal(mediaValorJfreeChartCBO)+
+                "|CLASSE JFREECHART DIT: " + tipoDecimal(mediaValorJfreeChartDIT) +
+                "|CLASSE JFREECHART LCOM: " + tipoDecimal(mediaValorJfreeChartLCOM) +
+                "|CLASSE JFREECHART NOC: " + tipoDecimal(mediaValorJfreeChartNOC) +
+                "|CLASSE JFREECHART RFC: " + tipoDecimal(mediaValorJfreeChartRFC) +
+                "|CLASSE JFREECHART WMC: " + tipoDecimal(mediaValorJfreeChartWMC);
+    }
+    public static String valorMediaLuceneMetricasCK(){
+        double mediaValorLuceneCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorLuceneDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorLuceneLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorLuceneNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorLuceneRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorLuceneWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("9"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - LUCENE \n" +
+                "|CLASSE LUCENE CBO: " + tipoDecimal(mediaValorLuceneCBO)+
+                "|CLASSE LUCENE DIT: " + tipoDecimal(mediaValorLuceneDIT) +
+                "|CLASSE LUCENE LCOM: " + tipoDecimal(mediaValorLuceneLCOM) +
+                "|CLASSE LUCENE NOC: " + tipoDecimal(mediaValorLuceneNOC) +
+                "|CLASSE LUCENE RFC: " + tipoDecimal(mediaValorLuceneRFC) +
+                "|CLASSE LUCENE WMC: " + tipoDecimal(mediaValorLuceneWMC);
+    }
+
+    public static String  valorMediaPoiMetricasCK(){
+        double mediaValorPoiCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+        double mediaValorPoiDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        double mediaValorPoiLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        double mediaValorPoiNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        double mediaValorPoiRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        double mediaValorPoiWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("10"))
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        return "MEDIA VALORES CK - POI \n" +
+                "|CLASSE POI CBO: " + tipoDecimal(mediaValorPoiCBO)+
+                "|CLASSE POI DIT: " + tipoDecimal(mediaValorPoiDIT) +
+                "|CLASSE POI LCOM: " + tipoDecimal(mediaValorPoiLCOM) +
+                "|CLASSE POI NOC: " + tipoDecimal(mediaValorPoiNOC) +
+                "|CLASSE POI RFC: " + tipoDecimal(mediaValorPoiRFC) +
+                "|CLASSE POI WMC: " + tipoDecimal(mediaValorPoiWMC);
+    }
+
+
 
     /*public static String quantidadeClassePorTipodeTesteIdentificado() {
         long quantidadeAchilles = getModelList().stream()
