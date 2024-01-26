@@ -117,37 +117,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaAchillesCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaAchillesDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaAchillesLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaAchillesNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaAchillesRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaAchillesWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("1"))
+                .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -164,37 +164,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaAssertjCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaAssertjDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaAssertjLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaAssertjNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaAssertjRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaAssertjWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Assertj"))
+                .filter(model -> model.getCLASSE().equals("2"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -211,37 +211,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaCommonsIOCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaCommonsIODIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaCommonsIOLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaCommonsIONOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaCommonsIORFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaCommonsIOWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Commons.IO"))
+                .filter(model -> model.getCLASSE().equals("3"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -258,37 +258,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaJodaCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaJodaDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaJodaLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaJodaNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaJodaRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaJodaWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Joda.time"))
+                .filter(model -> model.getCLASSE().equals("4"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -305,37 +305,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaMathCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaMathDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaMathLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaMathNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaMathRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaMathWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Math"))
+                .filter(model -> model.getCLASSE().equals("5"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -352,37 +352,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaHadoopCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaHadoopDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaHadoopLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaHadoopNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaHadoopRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaHadoopWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Hadoop"))
+                .filter(model -> model.getCLASSE().equals("6"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -399,37 +399,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaJackrabbitCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaJackrabbitDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaJackrabbitLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaJackrabbitNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaJackrabbitRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaJackrabbitWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Jackrabbit"))
+                .filter(model -> model.getCLASSE().equals("7"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 

@@ -120,34 +120,11 @@ public class Main {
         System.out.println(valorMediaLuceneMetricasCK());
         System.out.println(valorMediaPoiMetricasCK());
         System.out.println("-------------------------MEDIA-------------------------\n");
+        System.out.println("-------------------------SOMA-------------------------");
+        System.out.println(valorSomaAchillesMetricasCK());
+        System.out.println("-------------------------SOMA-------------------------\n");
         System.out.println("-------------------------DESVIO PADRAO-------------------------");
-       /* // Filtra modelos com classe "10" e extrai valores de DIT como DoubleStream
-        DoubleStream ditStream = getModelList().stream()
-                .filter(model -> model.getCLASSE().equals("1"))
-                .mapToDouble(model -> Double.parseDouble(model.getCBO()));
-
-        // Calcula a média
-        double media = ditStream.average().orElse(0.0);
-
-        // Calcula a soma dos quadrados das diferenças em relação à média
-        double somaQuadradosDiferencas = getModelList().stream()
-                .filter(model -> model.getCLASSE().equals("1"))
-                .mapToDouble(model -> {
-                    double dit = Double.parseDouble(model.getCBO());
-                    return Math.pow(dit - media, 2);
-                })
-                .sum();
-
-        // Calcula a variância
-        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
-
-        // Calcula o desvio padrão como a raiz quadrada da variância
-        double desvioPadrao = Math.sqrt(variancia);
-
-        System.out.println("Desvio Padrão: " + desvioPadrao);*/
-
         for (Map.Entry<String, String> entrada : mapeamentoClasse.entrySet()) {
-
             System.out.println(String.format(
             "DESVIO PADRAO CK - "+entrada.getKey()+" \n" +
                     "|CLASSE "+entrada.getKey()+" CBO: " + desvioPadraoCBO((entrada.getValue()))+
@@ -156,14 +133,6 @@ public class Main {
                     "|CLASSE "+entrada.getKey()+" NOC: " + desvioPadraoNOC((entrada.getValue())) +
                     "|CLASSE "+entrada.getKey()+" RFC: " + desvioPadraoRFC((entrada.getValue())) +
                     "|CLASSE "+entrada.getKey()+" WMC: " + desvioPadraoWMC((entrada.getValue()))));
-
-           /* System.out.println("CLASSE: "+entrada.getKey());
-            System.out.println(desvioPadraoCBO((entrada.getValue())));
-            System.out.println(desvioPadraoDIT((entrada.getValue())));
-            System.out.println(desvioPadraoLCOM((entrada.getValue())));
-            System.out.println(desvioPadraoNOC((entrada.getValue())));
-            System.out.println(desvioPadraoRFC((entrada.getValue())));
-            System.out.println(desvioPadraoWMC((entrada.getValue()))+"\n");*/
         }
         System.out.println("-------------------------DESVIO PADRAO-------------------------");
     }
