@@ -5,6 +5,7 @@ import org.com.projetock.chidamberkemerer.normalizacao.PreProcessamento;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 import static org.com.projetock.chidamberkemerer.util.Util.tipoDecimal;
 
@@ -1748,6 +1749,157 @@ public class ContagemMetricas extends PreProcessamento {
                 "|CLASSE POI WMC: " + tipoDecimal(mediaValorPoiWMC);
     }
 
+    public static String desvioPadraoCBO(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals((valorExistente)))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getCBO())));
+
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getCBO());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+
+    }
+    public static String desvioPadraoDIT(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getDIT())));
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getDIT());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+
+    }
+
+    public static String desvioPadraoLCOM(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals((valorExistente)))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getLCOM())));
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getLCOM());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+
+    }
+    public static String desvioPadraoNOC(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals((valorExistente)))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getNOC())));
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getNOC());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+    }
+
+    public static String desvioPadraoRFC(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals((valorExistente)))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getRFC())));
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getRFC());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+    }
+
+    public static String desvioPadraoWMC(String valorExistente){
+        double media = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals((valorExistente)))
+                //.mapToDouble(model -> Double.parseDouble(model.getCBO()));
+                .collect(Collectors.averagingDouble(model -> Double.parseDouble(model.getWMC())));
+
+        // Calcula a soma dos quadrados das diferenças em relação à média
+        double somaQuadradosDiferencas = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals(valorExistente))
+                .mapToDouble(model -> {
+                    double dit = Double.parseDouble(model.getWMC());
+                    return Math.pow(dit - media, 2);
+                })
+                .sum();
+
+        // Calcula a variancia
+        double variancia = somaQuadradosDiferencas / (getModelList().size() - 1);
+
+        // Calcula o desvio padrao como a raiz quadrada da variancia
+        double desvioPadrao = Math.sqrt(variancia);
+
+        return tipoDecimal(desvioPadrao);
+    }
 
 
     /*public static String quantidadeClassePorTipodeTesteIdentificado() {

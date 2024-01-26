@@ -5,16 +5,13 @@ import org.com.projetock.chidamberkemerer.util.Util;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
 
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 import static org.com.projetock.chidamberkemerer.contagem.ContagemMetricas.*;
 import static org.com.projetock.chidamberkemerer.metricas.Processamento.*;
-import static org.com.projetock.chidamberkemerer.util.Util.tipoDecimal;
+import static org.com.projetock.chidamberkemerer.util.Util.*;
 
 public class Main {
 
@@ -122,9 +119,9 @@ public class Main {
         System.out.println(valorMediaJfreeChartMetricasCK());
         System.out.println(valorMediaLuceneMetricasCK());
         System.out.println(valorMediaPoiMetricasCK());
-        System.out.println("-------------------------MEDIA-------------------------");
-
-        // Filtra modelos com classe "1" e extrai valores de DIT como DoubleStream
+        System.out.println("-------------------------MEDIA-------------------------\n");
+        System.out.println("-------------------------DESVIO PADRAO-------------------------");
+       /* // Filtra modelos com classe "10" e extrai valores de DIT como DoubleStream
         DoubleStream ditStream = getModelList().stream()
                 .filter(model -> model.getCLASSE().equals("1"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()));
@@ -147,9 +144,28 @@ public class Main {
         // Calcula o desvio padrão como a raiz quadrada da variância
         double desvioPadrao = Math.sqrt(variancia);
 
-        System.out.println("Desvio Padrão: " +  tipoDecimal(desvioPadrao));
+        System.out.println("Desvio Padrão: " + desvioPadrao);*/
 
+        for (Map.Entry<String, String> entrada : mapeamentoClasse.entrySet()) {
+
+            System.out.println(String.format(
+            "DESVIO PADRAO CK - "+entrada.getKey()+" \n" +
+                    "|CLASSE "+entrada.getKey()+" CBO: " + desvioPadraoCBO((entrada.getValue()))+
+                    "|CLASSE "+entrada.getKey()+" DIT: " + desvioPadraoDIT((entrada.getValue())) +
+                    "|CLASSE "+entrada.getKey()+" LCOM: " + desvioPadraoLCOM((entrada.getValue())) +
+                    "|CLASSE "+entrada.getKey()+" NOC: " + desvioPadraoNOC((entrada.getValue())) +
+                    "|CLASSE "+entrada.getKey()+" RFC: " + desvioPadraoRFC((entrada.getValue())) +
+                    "|CLASSE "+entrada.getKey()+" WMC: " + desvioPadraoWMC((entrada.getValue()))));
+
+           /* System.out.println("CLASSE: "+entrada.getKey());
+            System.out.println(desvioPadraoCBO((entrada.getValue())));
+            System.out.println(desvioPadraoDIT((entrada.getValue())));
+            System.out.println(desvioPadraoLCOM((entrada.getValue())));
+            System.out.println(desvioPadraoNOC((entrada.getValue())));
+            System.out.println(desvioPadraoRFC((entrada.getValue())));
+            System.out.println(desvioPadraoWMC((entrada.getValue()))+"\n");*/
+        }
+        System.out.println("-------------------------DESVIO PADRAO-------------------------");
     }
-
 
 }

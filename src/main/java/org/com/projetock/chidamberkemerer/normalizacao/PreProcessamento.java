@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static org.com.projetock.chidamberkemerer.util.Util.mapeamentoClasse;
+
 
 @Data
 public class PreProcessamento {
@@ -214,20 +216,6 @@ public class PreProcessamento {
     private static List<Model> normalizacaoDados(Model modelo) {
 
         try {
-
-            // Mapeamento para a condição "Classe"
-            Map<String, String> mapeamentoClasse = Map.of(
-                    "info.archinnov.achilles", "1",
-                    "org.assertj.core", "2",
-                    "org.apache.commons.io", "3",
-                    "org.joda", "4",
-                    "org.apache.commons.math", "5",
-                    "org.apache.hadoop", "6",
-                    "jackrabbit", "7",
-                    "jfree", "8",
-                    "lucene", "9",
-                    "org.apache.poi", "10"
-            );
 
             String valorNomeClasse = modelo.getCLASSE();
 
