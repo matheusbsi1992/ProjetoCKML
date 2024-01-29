@@ -120,6 +120,18 @@ public class Main {
         System.out.println(valorMediaLuceneMetricasCK());
         System.out.println(valorMediaPoiMetricasCK());
         System.out.println("-------------------------MEDIA-------------------------\n");
+        System.out.println("-------------------------MAIOR-------------------------");
+        System.out.println(valorMaiorAchillesMetricasCK());
+        System.out.println(valorMaiorAssertJMetricasCK());
+        System.out.println(valorMaiorCommonsIOMetricasCK());
+        System.out.println(valorMaiorJodaMetricasCK());
+        System.out.println(valorMaiorMathMetricasCK());
+        System.out.println(valorMaiorHadoopMathMetricasCK());
+        System.out.println(valorMaiorJackRabbitMetricasCK());
+        System.out.println(valorMaiorJfreeChartMetricasCK());
+        System.out.println(valorMaiorLuceneMetricasCK());
+        System.out.println(valorMaiorPoiMetricasCK());
+        System.out.println("-------------------------MAIOR-------------------------\n");
         System.out.println("-------------------------SOMA-------------------------");
         System.out.println(valorSomaAchillesMetricasCK());
         System.out.println(valorSomaAssertjMetricasCK());
