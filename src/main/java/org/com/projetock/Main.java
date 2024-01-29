@@ -122,6 +122,15 @@ public class Main {
         System.out.println("-------------------------MEDIA-------------------------\n");
         System.out.println("-------------------------SOMA-------------------------");
         System.out.println(valorSomaAchillesMetricasCK());
+        System.out.println(valorSomaAssertjMetricasCK());
+        System.out.println(valorSomaCommonsIOMetricasCK());
+        System.out.println(valorSomaJodaMetricasCK());
+        System.out.println(valorSomaMathMetricasCK());
+        System.out.println(valorSomaHadoopMetricasCK());
+        System.out.println(valorSomaJackRabbitMetricasCK());
+        System.out.println(valorSomaJfreeChartMetricasCK());
+        System.out.println(valorSomaLuceneMetricasCK());
+        System.out.println(valorSomaPoiMetricasCK());
         System.out.println("-------------------------SOMA-------------------------\n");
         System.out.println("-------------------------DESVIO PADRAO-------------------------");
         for (Map.Entry<String, String> entrada : mapeamentoClasse.entrySet()) {

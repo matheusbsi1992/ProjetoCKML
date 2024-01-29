@@ -395,7 +395,7 @@ public class ContagemMetricas extends PreProcessamento {
                 "|CLASSE HADOOP WMC: " + somaValorMetricaHadoopWMC;
     }
 
-    public static String valorSomaJackrabbitMetricasCK() {
+    public static String valorSomaJackRabbitMetricasCK() {
 
         double somaValorMetricaJackrabbitCBO = getModelList()
                 .stream()
@@ -442,41 +442,88 @@ public class ContagemMetricas extends PreProcessamento {
                 "|CLASSE JACKRABBIT WMC: " + somaValorMetricaJackrabbitWMC;
     }
 
+    public static String valorSomaJfreeChartMetricasCK() {
+
+        double somaValorMetricaJackrabbitCBO = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getCBO()))
+                .sum();
+
+        double somaValorMetricaJackrabbitDIT = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getDIT()))
+                .sum();
+
+        double somaValorMetricaJackrabbitLCOM = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
+                .sum();
+
+        double somaValorMetricaJackrabbitNOC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getNOC()))
+                .sum();
+
+        double somaValorMetricaJackrabbitRFC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getRFC()))
+                .sum();
+
+        double somaValorMetricaJackrabbitWMC = getModelList()
+                .stream()
+                .filter(model -> model.getCLASSE().equals("8"))
+                .mapToDouble(model -> Double.parseDouble(model.getWMC()))
+                .sum();
+
+        return "SOMA VALORES CK - JACKRABBIT \n" +
+                "|CLASSE JACKRABBIT CBO: " + somaValorMetricaJackrabbitCBO +
+                "|CLASSE JACKRABBIT DIT: " + somaValorMetricaJackrabbitDIT +
+                "|CLASSE JACKRABBIT LCOM: " + somaValorMetricaJackrabbitLCOM +
+                "|CLASSE JACKRABBIT NOC: " + somaValorMetricaJackrabbitNOC +
+                "|CLASSE JACKRABBIT RFC: " + somaValorMetricaJackrabbitRFC +
+                "|CLASSE JACKRABBIT WMC: " + somaValorMetricaJackrabbitWMC;
+    }
+
     public static String valorSomaLuceneMetricasCK() {
 
         double somaValorMetricaLuceneCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaLuceneDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaLuceneLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaLuceneNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaLuceneRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaLuceneWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Lucene"))
+                .filter(model -> model.getCLASSE().contains("9"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
@@ -493,37 +540,37 @@ public class ContagemMetricas extends PreProcessamento {
 
         double somaValorMetricaPoiCBO = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getCBO()))
                 .sum();
 
         double somaValorMetricaPoiDIT = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getDIT()))
                 .sum();
 
         double somaValorMetricaPoiLCOM = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getLCOM()))
                 .sum();
 
         double somaValorMetricaPoiNOC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getNOC()))
                 .sum();
 
         double somaValorMetricaPoiRFC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getRFC()))
                 .sum();
 
         double somaValorMetricaPoiWMC = getModelList()
                 .stream()
-                .filter(model -> model.getCLASSE().contains("Poi"))
+                .filter(model -> model.getCLASSE().contains("10"))
                 .mapToDouble(model -> Double.parseDouble(model.getWMC()))
                 .sum();
 
