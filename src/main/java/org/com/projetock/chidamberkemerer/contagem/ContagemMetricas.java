@@ -57,7 +57,6 @@ public class ContagemMetricas extends PreProcessamento {
                 , getModelList().stream().count());
     }
 
-
     public static String quantidadePorTipodeClasse() {
 
         long quantidadeTestAchilles = getModelList().stream()
