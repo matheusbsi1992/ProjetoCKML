@@ -2,6 +2,7 @@ package org.com.projetock.chidamberkemerer.contagem;
 
 import org.com.projetock.chidamberkemerer.modelo.Model;
 import org.com.projetock.chidamberkemerer.normalizacao.PreProcessamento;
+import org.com.projetock.chidamberkemerer.util.Util;
 
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -56,7 +57,64 @@ public class ContagemMetricas extends PreProcessamento {
                 , getModelList().stream().count());
     }
 
-    public static String quantidadePorTipodeClasseIdentificadosComoTestaveis() {
+
+    public static String quantidadePorTipodeClasse() {
+
+        long quantidadeTestAchilles = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals("1"))
+                .count();
+
+        long quantidadeTestAssertJ = getModelList().stream()
+                .filter(model -> model.getCLASSE().equals("2"))
+                .count();
+
+        long quantidadeTestCommonsio = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("3"))
+                .count();
+
+        long quantidadeTestJodaTime = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("4"))
+                .count();
+
+        long quantidadeTestMath = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("5"))
+                .count();
+
+        long quantidadeTestHadoop = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("6"))
+                .count();
+
+        long quantidadeTestJackRabbit = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("7"))
+                .count();
+
+        long quantidadeTestJfreeChart = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("8"))
+                .count();
+
+        long quantidadeTestLucene = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("9"))
+                .count();
+
+        long quantidadeTestPoi = getModelList().stream()
+                .filter(model ->model.getCLASSE().equals("10"))
+                .count();
+
+        return String.format("CLASSES IDENTIFICADAS COMO TESTAVEIS \n" +
+                        "|ACHILLES: %d|ASSERTJ: %d|COMMONS IO: %d|JODA TIME: %d|MATH: %d|HADOOP: %d|JACKRABBIT: %d|JFREECHART: %d|LUCENE: %d|POI: %d|"
+                , quantidadeTestAchilles
+                , quantidadeTestAssertJ
+                , quantidadeTestCommonsio
+                , quantidadeTestJodaTime
+                , quantidadeTestMath
+                , quantidadeTestHadoop
+                , quantidadeTestJackRabbit
+                , quantidadeTestJfreeChart
+                , quantidadeTestLucene
+                , quantidadeTestPoi
+        );
+    }
+   /* public static String quantidadePorTipodeClasseIdentificadosComoTestaveis() {
 
         long quantidadeTestAchilles = getModelList().stream()
                 .filter(model -> model.getUOTESTED().equals("1"))
@@ -111,8 +169,7 @@ public class ContagemMetricas extends PreProcessamento {
                 , quantidadeTestLucene
                 , quantidadeTestPoi
         );
-    }
-
+    }*/
     public static String valorSomaAchillesMetricasCK() {
 
         double somaValorMetricaAchillesCBO = getModelList()

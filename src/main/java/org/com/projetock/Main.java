@@ -34,9 +34,9 @@ public class Main {
                 // Mapear resultados de volta para exemplos de dados reais
                 Map<String, Set<Integer>> uotestedMapping = createUOTESTEDMapping();
                 Map<Integer, List<Double>> resultados = evaluationResultados(evaluation);
-                System.out.println("****************************");
-                getValueMestrics(evaluation);
-                System.out.println("****************************\n");
+               /* System.out.println("****************************");
+                *//*getValueMestrics(evaluation);*//*
+                System.out.println("****************************\n");*/
 
                 for (Map.Entry<Integer, List<Double>> entry : resultados.entrySet()) {
                     int classeIndex = entry.getKey();
@@ -47,10 +47,11 @@ public class Main {
 
                     for (Integer value : uotestedValues) {
                         System.out.println("Resultados para a classe " + classeValue + ":");
-                        System.out.println("Verdadeiros Positivos (VP): " + valores.get(0));
+                        /*System.out.println("Verdadeiros Positivos (VP): " + valores.get(0));
                         System.out.println("Verdadeiros Negativos (VN): " + valores.get(1));
                         System.out.println("Falsos Positivos (FP): " + valores.get(2));
                         System.out.println("Falsos Negativos (FN): " + valores.get(3));
+                        */
                         System.out.println("Área sob a Curva ROC: " + String.format("%.2f%%", valores.get(4) * 100));
                         //System.out.println("Valor ErrorRate: " + String.format("%.2f%%",valores.get(5)*100));
                         System.out.println("Acurácia: " + String.format("%.2f%%", acuracia(valores) * 100));
@@ -95,7 +96,11 @@ public class Main {
         System.out.println("--------------------------------------------------");
         System.out.println("QUANTIDADE DE CLASSES IDENTIFICADAS");
         System.out.println(quantidadeClasses());
-        System.out.println("QUANTIDADE DE CLASSES IDENTIFICADAS");
+        System.out.println("QUANTIDADE DE CLASSES IDENTIFICADAS\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println("QUANTIDADE DE CLASSES IDENTIFICADAS POR TIPO");
+        System.out.println(quantidadePorTipodeClasse());
+        System.out.println("QUANTIDADE DE CLASSES IDENTIFICADAS POR TIPO\n");
         System.out.println("-------------------------MENOR-------------------------");
         System.out.println(valorMenorAchillesMetricasCK());
         System.out.println(valorMenorAssertjMetricasCK());

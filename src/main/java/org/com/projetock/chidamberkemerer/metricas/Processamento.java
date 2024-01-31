@@ -95,7 +95,7 @@ public class Processamento {
         return evaluation;
     }
 
-    public static void getValueMestrics(Evaluation eval) throws Exception {
+   /* public static void getValueMestrics(Evaluation eval) throws Exception {
         if (eval.numInstances() > 0) {
             List<String> valorMetrics = eval.getMetricsToDisplay();
             for (String value : valorMetrics) {
@@ -114,7 +114,7 @@ public class Processamento {
 
         // Exibe os resultados da avaliação
         System.out.println(eval.toSummaryString());
-    }
+    }*/
 
     public static Map<Integer, List<Double>> evaluationResultados(Evaluation eval) throws Exception {
         Map<Integer, List<Double>> valoresVals = new HashMap<>();
